@@ -12,16 +12,22 @@ const App = () => {
     setDesc("");
   }
 
+  const handleDelete= (index) =>{
+    let copyTask = [...task]
+    copyTask.splice(index,1);
+    setTask(copyTask);
+  }
   let renderTask = <h2>No Task Available</h2>
   if(task.length > 0)
   {
     renderTask = task.map((task, index) => {
       return (
-        <li key={index}>
-          <div className='flex justify-between mb-5'>
+        <li key={index} className='flex items-center justify-between mb-5'>
+          <div className='flex justify-between w-2/3'>
             <h5 className='text-2xlfont-semibold'>{task.title}</h5>
             <h6 className='text-2xlfont-semibold'>{task.desc} </h6>
           </div>
+          <button onClick={()=> handleDelete(index)} className='bg-red-400 text-white px-4 py-2 rounded font-bold'>Delete</button>
         </li>
   
       )
